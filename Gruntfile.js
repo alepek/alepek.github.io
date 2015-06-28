@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 		uncss: {
 			dist: {
 				files: {
-					'dist/css/style.css': ['src/index.html']
+					'app/css/style.css': ['src/index.html']
 				}
 			}
 		},
@@ -26,13 +26,22 @@ module.exports = function(grunt) {
 					'index.html': ['src/index.html']
 				}
 			}
+		},
+		less: {
+			development: {
+				files: {
+					'src/css/style.css': ['src/less/vendor.less', 'src/less/source.less']
+				}
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-jscs');
 	grunt.loadNpmTasks('grunt-uncss');
 	grunt.loadNpmTasks('grunt-processhtml');
 
-	grunt.registerTask('default', ['jshint', 'jscs', 'uncss', 'processhtml']);
+	grunt.registerTask('default',
+		['jshint', 'jscs', 'less:development', 'uncss', 'processhtml']);
 };
