@@ -652,8 +652,16 @@
 				}
 				$(window).resize(function() {
 					$(singleSlide).each(function() {
-						$(this).css('height', $(window).outerHeight());
-						$(this).outerHeight($(window).outerHeight());
+						var height;
+						if (window && window.screen && window.screen.availHeight) {
+							height = window.screen.availHeight;
+						}
+						else {
+							height = $(window).outerHeight();
+						}
+
+						$(this).css('height', height);
+						$(this).outerHeight(height);
 					});
 				});
 			}

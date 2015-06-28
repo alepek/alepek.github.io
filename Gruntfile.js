@@ -22,6 +22,9 @@ module.exports = function(grunt) {
 		},
 		uncss: {
 			dist: {
+				options: {
+					ignore: ['.paginate']
+				},
 				files: {
 					'app/css/style.css': ['src/index.html']
 				}
