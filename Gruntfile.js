@@ -13,6 +13,13 @@ module.exports = function(grunt) {
 				config: 'config/grunt/.jscs.json'
 			}
 		},
+		less: {
+			development: {
+				files: {
+					'src/css/style.css': ['src/less/vendor/*.less', 'src/less/*.less']
+				}
+			}
+		},
 		uncss: {
 			dist: {
 				files: {
@@ -27,21 +34,35 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		less: {
-			development: {
+		cssmin: {
+			options: {
+				shorthandCompacting: false,
+				roundingPrecision: -1,
+				keepSpecialComments: 0
+			},
+			target: {
 				files: {
-					'src/css/style.css': ['src/less/vendor.less', 'src/less/source.less']
+					'app/css/style.min.css': ['app/css/style.css']
+				}
+			}
+		},
+		uglify: {
+			my_target: {
+				files: {
+					'app/js/app.min.js': ['src/js/app.js', 'src/js/vendor/*.js']
 				}
 			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-jscs');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-uncss');
 	grunt.loadNpmTasks('grunt-processhtml');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	grunt.registerTask('default',
-		['jshint', 'jscs', 'less:development', 'uncss', 'processhtml']);
+		['jshint', 'jscs', 'less:development', 'uncss', 'cssmin', 'uglify', 'processhtml']);
 };
