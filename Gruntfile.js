@@ -52,7 +52,38 @@ module.exports = function(grunt) {
 					'app/js/app.min.js': ['src/js/app.js', 'src/js/vendor/*.js']
 				}
 			}
+		},
+		watch: {
+			scripts: {
+				files: ['Gruntfile.js', 'src/**/*.js'],
+				tasks: ['jshint', 'jscs', 'uglify'],
+				options: {
+					spawn: true,
+					reload: true,
+					debounceDelay: 250
+				}
+			},
+			html: {
+				files: ['src/*.html'],
+				tasks: ['processhtml'],
+				options: {
+					spawn: true,
+					debounceDelay: 250
+				}
+			},
+			css: {
+				files: ['src/**/*.less'],
+				tasks: ['less:development', 'uncss', 'cssmin'],
+				options: {
+					spawn: true,
+					debounceDelay: 250
+				}
+			}
 		}
+	});
+
+	grunt.event.on('watch', function(action, filepath, target) {
+		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -62,7 +93,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-processhtml');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default',
+	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('build',
 		['jshint', 'jscs', 'less:development', 'uncss', 'cssmin', 'uglify', 'processhtml']);
 };
