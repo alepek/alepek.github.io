@@ -1,0 +1,18 @@
+{
+  "name": "alepek.github.io",
+  "version": "1.0.0",
+  "description": "Alexanders github website",
+  "author": "Alexander Pekkari",
+  "private": false,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-exec": "^0.4.6",
+    "grunt-jscs": "^1.8.0",
+    "grunt-jsonlint": "^1.0.4",
+    "jshint-stylish": "^2.0.1"
+  }
+}
