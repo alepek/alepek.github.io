@@ -1,7 +1,41 @@
+@import 'src/less/vendor/css3';
+@import 'src/less/vendor/gradients';
+@import 'src/less/vendor/normalize';
+
 body {
-  background: #eaeaea;
+	color: rgb(51,51,51);
+	font-family: 'Lato', sans-serif;
+	color: #fafaff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-weight: 400;
 }
 
 .t-center {
 	text-align: center;
+}
+.t-upper {
+	text-transform: uppercase;
+}
+
+.slide:nth-child(1) {
+	#gradient.vertical(#C04848, #61045F);
+}
+.slide:nth-child(2) {
+	#gradient.vertical(#61045F, #4B1248);
+}
+.slide:nth-child(3) {
+	#gradient.vertical(#4B1248, #5F2C82);
+}
+.slide:nth-child(4) {
+	#gradient.vertical(#5F2C82, #0b8793);
+}
+
+.slide-content {
+	padding: 1rem;
 }

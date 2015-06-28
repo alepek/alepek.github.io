@@ -2,13 +2,13 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
-			all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+			all: ['Gruntfile.js', 'src/*.js'],
 			options: {
 				jshintrc: 'config/grunt/.jshintrc.json'
 			}
 		},
 		jscs: {
-			src: ['Gruntfile.js', 'src/**/*.js'],
+			src: ['Gruntfile.js', 'src/*.js'],
 			options: {
 				config: 'config/grunt/.jscs.json'
 			}
@@ -49,13 +49,13 @@ module.exports = function(grunt) {
 		uglify: {
 			my_target: {
 				files: {
-					'app/js/app.min.js': ['src/js/app.js', 'src/js/vendor/*.js']
+					'app/js/app.min.js': ['src/js/vendor/jquery.js', 'src/js/vendor/*.js', 'src/js/app.js']
 				}
 			}
 		},
 		watch: {
 			scripts: {
-				files: ['Gruntfile.js', 'src/**/*.js'],
+				files: ['Gruntfile.js', 'src/js/**/*.js'],
 				tasks: ['jshint', 'jscs', 'uglify'],
 				options: {
 					spawn: true,
@@ -84,6 +84,7 @@ module.exports = function(grunt) {
 
 	grunt.event.on('watch', function(action, filepath, target) {
 		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+		grunt.event.removeAllListeners('watch');
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
