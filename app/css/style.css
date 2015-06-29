@@ -42,9 +42,8 @@ section {
   display: block;
 }
 
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+img {
+  border: 0;
 }
 
 button::-moz-focus-inner,
@@ -66,9 +65,22 @@ input::-moz-focus-inner {
     text-shadow: none !important;
   }
 
-  p {
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2 {
     orphans: 3;
     widows: 3;
+  }
+
+  h2 {
+    page-break-after: avoid;
   }
 }
 
@@ -98,20 +110,37 @@ body {
   background-color: #ffffff;
 }
 
-h1 {
+img {
+  vertical-align: middle;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+h2,
+.h2 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
 }
 
-h1 {
+h2,
+.h2 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-h1 {
-  font-size: 36px;
+h2,
+.h2 {
+  font-size: 30px;
 }
 
 p {
@@ -206,6 +235,22 @@ p {
   width: device-width;
 }
 
+.visible-xs {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .visible-xs {
+    display: block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 /**
@@ -291,11 +336,6 @@ section {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
 /**
  * Address styling not present in IE 8/9.
  */
@@ -314,6 +354,10 @@ h1 {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
+
+img {
+  border: 0;
+}
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
@@ -527,11 +571,6 @@ section {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
 /**
  * Address styling not present in IE 8/9.
  */
@@ -550,6 +589,10 @@ h1 {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
+
+img {
+  border: 0;
+}
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
@@ -684,16 +727,21 @@ body {
   font-size: 16px;
 }
 
-section.full {
-  transition: all .3s ease;
-}
-
-section.is-loading {
-  opacity: 0;
-}
-
-h1 {
+h2 {
   font-weight: 400;
+}
+
+h2,
+.h2 {
+  margin: .6em 0;
+}
+
+p {
+  font-size: 18px;
+}
+
+img.is-tiny {
+  max-width: 160px;
 }
 
 .paginate {
@@ -704,6 +752,23 @@ h1 {
 
 .slide {
   color: #480048;
+}
+
+@media screen and (max-width: 768px) {
+  .t-center-xs {
+    text-align: center;
+  }
+
+  .t-center-xs img {
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .slide:nth-child(2) {
+    background-size: cover;
+    background-image: url('../img/saltside-bg.png');
+  }
 }
 
 .slide-content {

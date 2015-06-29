@@ -1,4 +1,3 @@
-
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/)) {
 	$(document).alton({
 		fullSlideContainer: 'full', // Tell Alton the full height container
@@ -11,8 +10,5 @@ if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Window
 }
 
 $(document).ready(function() {
-	// start loading images
-	setTimeout(function() {
-		$('section.full').removeClass('is-loading');
-	}, 100);
+
 });

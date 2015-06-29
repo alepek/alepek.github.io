@@ -9,12 +9,6 @@ body {
 }
 
 section {
-	&.full {
-		transition: all .3s ease;
-	}
-	&.is-loading {
-		opacity: 0;
-	}
 }
 
 h1,
@@ -24,12 +18,48 @@ h4,
 h5 {
 	font-weight: 400;
 }
+h1,
+.h1 {
+	margin: .7em 0;
+}
+h2,
+.h2 {
+	margin: .6em 0;
+}
+h3,
+.h3 {
+	margin: .5em 0;
+}
 
+p,
+.p {
+	font-size: 18px;
+}
+
+img {
+	&.is-tiny {
+		max-width: 160px;
+	}
+	&.is-small {
+		max-width: 220px;
+	}
+}
+
+.t-center {
+	text-align: center;
+}
 
 .paginate {
 	width: 15px !important;
 	height: 15px !important;
 	opacity: .66;
+}
+
+.pull-right {
+	float: right;
+}
+.pull-left {
+	float: left;
 }
 
 .t-center {
@@ -40,13 +70,26 @@ h5 {
 	color: #480048;
 }
 
-.slide:nth-child(1) {
+@media screen and (max-width: 768px) {
+	.t-center-xs {
+		text-align: center;
+
+		img {
+			display: inline-block;
+		}
+	}
 }
-.slide:nth-child(2) {
-}
-.slide:nth-child(3) {
-}
-.slide:nth-child(4) {
+@media screen and (min-width: 769px) {
+	.slide:nth-child(1) {
+	}
+	.slide:nth-child(2) {
+		background-size: cover;
+		background-image: url('../img/saltside-bg.png');
+	}
+	.slide:nth-child(3) {
+	}
+	.slide:nth-child(4) {
+	}
 }
 
 .slide-content {
