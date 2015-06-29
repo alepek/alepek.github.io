@@ -3822,6 +3822,12 @@ body {
   color: #f5f5ff;
   font-size: 16px;
 }
+section.full {
+  transition: all .3s ease;
+}
+section.is-loading {
+  opacity: 0;
+}
 h1,
 h2,
 h3,
@@ -3837,28 +3843,9 @@ h5 {
 .t-center {
   text-align: center;
 }
-.t-upper {
-  text-transform: uppercase;
-}
 .slide {
-  background-color: #eee;
-}
-.slide:nth-child(1) {
   color: #480048;
 }
-.slide:nth-child(2) {
-  background: url('../img/saltside.jpg');
-  background-size: cover;
-}
-.slide:nth-child(3) {
-  background: url('../img/earth-space.jpg');
-  background-size: cover;
-}
-.slide:nth-child(4) {
-  background: url('../img/earth-space.jpg');
-  background-size: cover;
-}
 .slide-content {
-  max-width: 820px !important;
-  margin: 0 auto;
+  max-width: 768px !important;
 }
