@@ -9,6 +9,12 @@ body {
 }
 
 section {
+	&.full {
+		transition: opacity .3s ease;
+	}
+	&.not-loaded {
+		opacity: 0;
+	}
 }
 
 h1,

@@ -727,6 +727,14 @@ body {
   font-size: 16px;
 }
 
+section.full {
+  transition: opacity .3s ease;
+}
+
+section.not-loaded {
+  opacity: 0;
+}
+
 h2 {
   font-weight: 400;
 }

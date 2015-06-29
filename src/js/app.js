@@ -10,5 +10,7 @@ if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Window
 }
 
 $(document).ready(function() {
-
+	setTimeout(function() {
+		$('section.full').removeClass('not-loaded');
+	}, 100);
 });
