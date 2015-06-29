@@ -42,6 +42,10 @@ section {
   display: block;
 }
 
+small {
+  font-size: 80%;
+}
+
 img {
   border: 0;
 }
@@ -132,10 +136,20 @@ h2,
   color: inherit;
 }
 
+h2 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #777777;
+}
+
 h2,
 .h2 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+h2 small {
+  font-size: 65%;
 }
 
 h2,
@@ -145,6 +159,10 @@ h2,
 
 p {
   margin: 0 0 10px;
+}
+
+small {
+  font-size: 85%;
 }
 
 .container {
@@ -344,6 +362,10 @@ section {
  * Address inconsistent and variable font size in all browsers.
  */
 
+small {
+  font-size: 80%;
+}
+
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
@@ -579,6 +601,10 @@ section {
  * Address inconsistent and variable font size in all browsers.
  */
 
+small {
+  font-size: 80%;
+}
+
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
@@ -770,12 +796,27 @@ img.is-tiny {
   .t-center-xs img {
     display: inline-block;
   }
+
+  h2 small {
+    display: block;
+    margin: .5rem 0;
+  }
 }
 
 @media screen and (min-width: 769px) {
   .slide:nth-child(2) {
     background-size: cover;
     background-image: url('../img/saltside-bg.png');
+  }
+
+  .slide:nth-child(3) {
+    background-size: cover;
+    background-image: url('../img/world-map.jpg');
+  }
+
+  .slide:nth-child(4) {
+    background-size: cover;
+    background-image: url('../img/escape.jpg');
   }
 }
 

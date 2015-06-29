@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 			},
 			html: {
 				files: ['src/*.html'],
-				tasks: ['processhtml'],
+				tasks: ['processhtml', 'less:development', 'uncss', 'cssmin'],
 				options: {
 					spawn: true,
 					debounceDelay: 250
@@ -101,5 +101,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('build',
-		['jshint', 'jscs', 'less:development', 'uncss', 'cssmin', 'uglify', 'processhtml']);
+		['jshint', 'jscs', 'processhtml', 'less:development', 'uncss', 'cssmin', 'uglify']);
 };
