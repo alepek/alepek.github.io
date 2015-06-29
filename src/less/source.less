@@ -22,13 +22,22 @@ section {
 }
 
 h1,
+.h1
 h2,
-h3 {
+.h2
+h3,
+.h3 {
+	margin-top: 2rem;
 	font-weight: 400;
 	color: @font-color-heading;
 	small {
 		color: @font-color-light;
 	}
+}
+
+h2,
+.h2 {
+	margin-top: 4rem;
 }
 
 img {
@@ -39,6 +48,9 @@ img {
 	&.is-small {
 		min-width: 220px;
 		max-width: 220px;
+	}
+	&.is-lofty {
+		margin: 2rem 0;
 	}
 }
 
@@ -73,7 +85,6 @@ img {
 	h1,
 	h2,
 	h3 {
-		margin-top: 3rem;
 		small {
 			display: block;
 			margin: .5rem 0;

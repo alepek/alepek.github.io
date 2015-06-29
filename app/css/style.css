@@ -803,18 +803,17 @@ body {
 }
 
 h2,
-h3 {
-  font-weight: 400;
-  color: #480048;
-}
-
-h3 small {
-  color: #887888;
+.h2 {
+  margin-top: 4rem;
 }
 
 img.is-tiny {
   min-width: 160px;
   max-width: 160px;
+}
+
+img.is-lofty {
+  margin: 2rem 0;
 }
 
 .tech-used {
@@ -829,11 +828,6 @@ img.is-tiny {
 
   .t-center-xs img {
     display: inline-block;
-  }
-
-  h2,
-  h3 {
-    margin-top: 3rem;
   }
 
   h3 small {
