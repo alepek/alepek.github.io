@@ -803,8 +803,19 @@ body {
 }
 
 h2,
+h3,
 .h2 {
-  margin-top: 4rem;
+  margin-top: 2rem;
+  font-weight: 400;
+  color: #480048;
+}
+
+h3 small {
+  color: #887888;
+}
+
+h2.is-lofty {
+  margin-top: 6rem;
 }
 
 img.is-tiny {
@@ -819,6 +830,30 @@ img.is-lofty {
 .tech-used {
   font-style: italic;
   color: #887888;
+}
+
+.animate-load {
+  transition: all .3s ease;
+  opacity: 1;
+  -webkit-transform: translate(0%, 0%);
+  -ms-transform: translate(0%, 0%);
+  transform: translate(0%, 0%);
+}
+
+.animate-load.not-loaded {
+  opacity: 0;
+}
+
+.animate-load.not-loaded.bounce {
+  -webkit-transform: translate(0%, 8%);
+  -ms-transform: translate(0%, 8%);
+  transform: translate(0%, 8%);
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .container {
+    margin: 0 3rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
