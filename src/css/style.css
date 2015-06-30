@@ -3859,6 +3859,9 @@ img.is-small {
 img.is-lofty {
   margin: 2rem 0;
 }
+ul li {
+  margin-bottom: .5rem;
+}
 .t-right {
   text-align: right;
 }
@@ -3889,6 +3892,9 @@ img.is-lofty {
   -webkit-transform: translate(0%, 8%);
   -ms-transform: translate(0%, 8%);
   transform: translate(0%, 8%);
+}
+.row.contact {
+  margin-bottom: 4rem;
 }
 @media screen and (min-width: 480px) and (max-width: 768px) {
   .container {
