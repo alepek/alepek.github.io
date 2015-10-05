@@ -3821,6 +3821,7 @@ body {
   font-family: 'Lato', sans-serif;
   color: #363036;
   font-size: 16px;
+  margin: 2rem 0;
 }
 h1,
 h2,
@@ -3846,7 +3847,7 @@ h3.is-lofty,
 .h1.is-lofty,
 .h2.is-lofty,
 .h3.is-lofty {
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 img.is-tiny {
   min-width: 160px;
