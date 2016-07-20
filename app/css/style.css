@@ -807,7 +807,7 @@ input::-moz-focus-inner {
 
 body {
   font-family: 'Lato', sans-serif;
-  color: #363036;
+  color: #443c44;
   font-size: 16px;
   margin: 2rem 0;
 }
@@ -852,6 +852,10 @@ ul li {
   -webkit-transform: translate(0%, 0%);
   -ms-transform: translate(0%, 0%);
   transform: translate(0%, 0%);
+  -webkit-filter: blur(0);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
 }
 
 .animate-load.not-loaded {
@@ -859,9 +863,10 @@ ul li {
 }
 
 .animate-load.not-loaded.bounce {
-  -webkit-transform: translate(0%, 8%);
-  -ms-transform: translate(0%, 8%);
-  transform: translate(0%, 8%);
+  -webkit-filter: blur(5px);
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .row.contact {

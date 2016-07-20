@@ -3,7 +3,7 @@
 @import 'src/less/vendor/normalize';
 
 @font-color-light: lighten(#5F545F, 15%);
-@font-color-dark: darken(#5F545F, 15%);
+@font-color-dark: darken(#5F545F, 10%);
 @font-color-heading: #480048;
 
 body {
@@ -75,12 +75,15 @@ ul {
 	transition: all .3s ease;
 	opacity: 1;
 	.transform(translate(0%, 0%));
+	-webkit-filter: blur(0);
+	.transform(scale(1));
 
 	&.not-loaded {
 		opacity: 0;
 
 		&.bounce {
-			.transform(translate(0%, 8%));
+			-webkit-filter: blur(5px);
+			.transform(scale(.9));
 		}
 	}
 }

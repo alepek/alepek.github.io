@@ -101,5 +101,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', ['watch']);
 	grunt.registerTask('build',
-		['jshint', 'jscs', 'processhtml', 'less:development', 'uncss', 'cssmin', 'uglify']);
+		['processhtml', 'less:development', 'uncss', 'cssmin', 'uglify']);
 };
