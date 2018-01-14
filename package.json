@@ -1,24 +1,8 @@
 {
   "name": "alepek.github.io",
-  "version": "1.0.0",
-  "description": "Alexanders github website",
-  "author": "Alexander Pekkari",
-  "private": false,
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-cssmin": "^0.12.3",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-less": "^1.0.1",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-exec": "^0.4.6",
-    "grunt-jscs": "^1.8.0",
-    "grunt-jsonlint": "^1.0.4",
-    "grunt-processhtml": "^0.3.8",
-    "grunt-uncss": "^0.4.3",
-    "jshint-stylish": "^2.0.1"
-  }
+  "version": "1.1",
+  "description": "my personal github page",
+  "repository": "git@github.com:alepek/alepek.github.io.git",
+  "author": "alepek",
+  "license": "MIT"
 }
