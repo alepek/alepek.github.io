@@ -25,7 +25,7 @@
       }
       @keyframes fade-down {
         0% {
-          transform: translateY(-10px);
+          transform: translateY(-0.5rem);
           opacity: 0;
         }
         100% {
@@ -35,7 +35,7 @@
       }
       @keyframes fade-up {
         0% {
-          transform: translateY(10px);
+          transform: translateY(0.5rem);
           opacity: 0;
         }
         100% {
@@ -52,23 +52,25 @@
       .hero > * {
         opacity: 0;
         margin: 1rem 0;
-        animation: fade-down 500ms ease forwards;
+        animation: fade-down 600ms ease forwards;
       }
       .hero > *:nth-child(2) {
-        animation-delay: 50ms;
+        animation-delay: 75ms;
       }
       .hero > *:nth-child(3) {
-        animation-delay: 100ms;
-      }
-      .hero > *:nth-child(4) {
         animation-delay: 150ms;
       }
       .hero > *:nth-child(4) {
-        animation-delay: 200ms;
+        animation-delay: 275ms;
       }
       .portrait {
-        min-height: 96px;
-        min-width: 96px;
+        height: 120px;
+        width: 120px;
+        display: inline-block;
+      }
+      .portrait img {
+        max-width: 100%;
+        max-height: 100%;
       }
       .container {
         max-width: 640px;
@@ -76,8 +78,8 @@
       .content {
         margin: 2rem 0;
         opacity: 0;
-        animation: fade-up 500ms ease forwards;
-        animation-delay: 400ms;
+        animation: fade-up 600ms ease forwards;
+        animation-delay: 350ms;
       }
       h4 > small {
         font-size: 66%;
@@ -100,15 +102,15 @@
         <div class="col col-xs t-center fade-down">
           <div class="hero">
             <h2>Hey there! I'm Alex.</h2>
-            <img
-              width="96px"
-              height="96px"
-              class="img-fluid portrait"
-              src="http://avatars1.githubusercontent.com/u/5012939?v=3&s=460"
-              alt="alepek"
-            >
+            <div class="portrait">
+              <img
+                class="img-fluid"
+                src="http://avatars1.githubusercontent.com/u/5012939?v=3&s=460"
+                alt="alepek"
+              >
+            </div>
             <p>I like working with JS and the web.</p>
-            <p>Right now I am working on a few mobile web apps at SpeedLedger, striving to make automated bookkeeping a great experience for both customers and developers.</p>
+            <p>Right now I am working at Adfenix, striving to make the frontend tech stack and experience absolutely top notch!</p>
           </div>
         </div>
       </div>
@@ -122,9 +124,27 @@
           <div class="col">
             <section class="experience">
               <h4>
+                Adfenix
+                <br />
+                <small class="t-muted">Senior Frontend Developer 2018 - </small>
+              </h4>
+              <br />
+              <p>
+                <a href="https://adfenix.com/en/frontpage">Adfenix</a> help real estate agents to find new customers using automatic and data-driven social media advertising.
+              </p>
+              <p class="tech-used t-muted">
+                Some of the tech used: Docker, Kubernetes, Vue, React
+              </p>
+            </section>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <section class="experience">
+              <h4>
                 SpeedLedger
                 <br />
-                <small class="t-muted">JS Architect 2016 - </small>
+                <small class="t-muted">JS Architect 2016 - 2018</small>
               </h4>
               <br />
               <p>
