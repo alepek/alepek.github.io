@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
-      href="https://fonts.googleapis.com/css?family=Quicksand:400,600"
+      href="https://fonts.googleapis.com/css2?family=Merriweather"
       rel="stylesheet"
     />
     <link
@@ -14,23 +14,294 @@
       crossorigin="anonymous"
     />
     <title>Alexander Pekkari's GH page</title>
+    <!-- Animation styles - flicker in -->
+    <style>
+      .flicker-in-1 {
+        -webkit-animation: flicker-in-1 2500ms
+          cubic-bezier(0.6, 0.04, 0.98, 0.335) 500ms both;
+        animation: flicker-in-1 2500ms cubic-bezier(0.6, 0.04, 0.98, 0.335)
+          500ms both;
+      }
+      @-webkit-keyframes flicker-in-1 {
+        0% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+          -webkit-filter: blur(4px);
+          filter: blur(4px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0;
+        }
+        10.1% {
+          opacity: 1;
+        }
+        10.2% {
+          opacity: 0;
+        }
+        20% {
+          opacity: 0;
+        }
+        20.1% {
+          opacity: 1;
+        }
+        20.6% {
+          opacity: 0;
+        }
+        30% {
+          opacity: 0;
+        }
+        30.1% {
+          opacity: 1;
+        }
+        30.5% {
+          opacity: 1;
+        }
+        30.6% {
+          opacity: 0;
+        }
+        45% {
+          opacity: 0;
+        }
+        45.1% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        55% {
+          opacity: 1;
+        }
+        55.1% {
+          opacity: 0;
+        }
+        57% {
+          opacity: 0;
+        }
+        57.1% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        60.1% {
+          opacity: 0;
+        }
+        65% {
+          opacity: 0;
+        }
+        65.1% {
+          opacity: 1;
+        }
+        75% {
+          -webkit-filter: blur(0);
+          filter: blur(0);
+          opacity: 1;
+        }
+        75.1% {
+          opacity: 0;
+        }
+        77% {
+          opacity: 0;
+        }
+        77.1% {
+          opacity: 1;
+        }
+        85% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+        }
+        85.1% {
+          opacity: 0;
+        }
+        86% {
+          opacity: 0;
+        }
+        86.1% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes flicker-in-1 {
+        0% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+          -webkit-filter: blur(4px);
+          filter: blur(4px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0;
+        }
+        10.1% {
+          opacity: 1;
+        }
+        10.2% {
+          opacity: 0;
+        }
+        20% {
+          opacity: 0;
+        }
+        20.1% {
+          opacity: 1;
+        }
+        20.6% {
+          opacity: 0;
+        }
+        30% {
+          opacity: 0;
+        }
+        30.1% {
+          opacity: 1;
+        }
+        30.5% {
+          opacity: 1;
+        }
+        30.6% {
+          opacity: 0;
+        }
+        45% {
+          opacity: 0;
+        }
+        45.1% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        55% {
+          opacity: 1;
+        }
+        55.1% {
+          opacity: 0;
+        }
+        57% {
+          opacity: 0;
+        }
+        57.1% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        60.1% {
+          opacity: 0;
+        }
+        65% {
+          opacity: 0;
+        }
+        65.1% {
+          opacity: 1;
+        }
+        75% {
+          -webkit-filter: blur(0);
+          filter: blur(0);
+          opacity: 1;
+        }
+        75.1% {
+          opacity: 0;
+        }
+        77% {
+          opacity: 0;
+        }
+        77.1% {
+          opacity: 1;
+        }
+        85% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          opacity: 1;
+        }
+        85.1% {
+          opacity: 0;
+        }
+        86% {
+          opacity: 0;
+        }
+        86.1% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+    <!-- Animation styles - puff in -->
+    <style>
+      .puff-in-center-0 {
+        -webkit-animation: puff-in-center 500ms
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+      }
+      .puff-in-center-1 {
+        -webkit-animation: puff-in-center 500ms
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both 250ms;
+        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both 250ms;
+      }
+      .puff-in-center-2 {
+        -webkit-animation: puff-in-center 500ms
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both 500ms;
+        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both 500ms;
+      }
+      @-webkit-keyframes puff-in-center {
+        0% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+          -webkit-filter: blur(4px);
+          filter: blur(4px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          -webkit-filter: blur(0px);
+          filter: blur(0px);
+          opacity: 1;
+        }
+      }
+      @keyframes puff-in-center {
+        0% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+          -webkit-filter: blur(4px);
+          filter: blur(4px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          -webkit-filter: blur(0px);
+          filter: blur(0px);
+          opacity: 1;
+        }
+      }
+    </style>
+    <!-- Simple document styles -->
     <style>
       html,
       body {
-        background-color: rgb(39, 35, 32);
-        color: #f4f1f5;
+        background-color: #000;
+        color: #f2f1f5;
         font-size: 18px;
-        font-family: "Quicksand", sans-serif, Arial, Helvetica, sans-serif;
+        font-family: "Merriweather", serif;
         font-weight: 400;
       }
 
       a {
-        color: rgb(162, 85, 235);
+        color: rgb(56, 119, 255);
+        text-shadow: blue 0 1px 1px;
         transition: all 200ms ease;
       }
 
       a:hover {
-        color: rgb(160, 58, 255);
+        color: rgb(112, 138, 252);
+        text-shadow: blue 1px 1px 2px;
         text-decoration: none;
       }
 
@@ -40,11 +311,19 @@
       h4,
       h5,
       h6 {
-        font-weight: 600;
+        font-weight: 700;
       }
 
       .mb-0 {
         margin-bottom: 0;
+      }
+
+      .mb-1 {
+        margin-bottom: 0.25rem;
+      }
+
+      .mb-2 {
+        margin-bottom: 0.5rem;
       }
 
       .t-center {
@@ -63,8 +342,17 @@
         font-size: 0.85rem;
       }
 
+      .t-mono {
+        font-family: monospace;
+      }
+
       .hero {
-        margin: 2rem 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5vh 0 15vh;
       }
 
       .hero img {
@@ -76,8 +364,8 @@
       }
 
       .portrait {
-        height: 120px;
-        width: 120px;
+        height: 180px;
+        width: 180px;
         display: inline-block;
       }
 
@@ -107,21 +395,20 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col col-xs t-center fade-down">
+        <div class="col col-xs t-center">
           <div class="hero">
-            <h2>Hey there! I'm Alex.</h2>
-            <div class="portrait">
+            <div class="portrait puff-in-center-0">
               <img
                 class="img-fluid"
                 src="http://avatars1.githubusercontent.com/u/5012939?v=3&s=460"
                 alt="alepek"
               />
             </div>
-            <p>I like working with JS and open source software.</p>
-            <p>
-              I'm currently working at
-              <a href="https://meltwater.com/">Meltwater</a>.
+            <h2 class="puff-in-center-1">Hey there! I'm Alex.</h2>
+            <p class="puff-in-center-2">
+              I like working with JavaScript and open source software.
             </p>
+            <h2 class="flicker-in-1">↯</h2>
           </div>
         </div>
       </div>
@@ -134,58 +421,56 @@
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 Meltwater
               </h4>
-              <p class="t-muted t-small">
+              <p class="t-muted t-small t-mono mb-0">
                 Senior Software Engineer Nov 2019 -
+              </p>
+              <p class="t-small t-mono t-muted">
+                Tech: Docker, Node.js, Vue.js, Stencil.js, AngularJS
               </p>
               <p>
                 <a href="https://meltwater.com/">Meltwater</a> is an industry
                 leader in complex media and social insights.
               </p>
-              <p class="t-small t-italic t-muted">
-                Some of the tech used: Node.js, Vue, GraphQL
-              </p>
             </section>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 SMS Park
               </h4>
-              <p class="t-muted t-small">
+              <p class="t-muted t-small t-mono mb-0">
                 Frontend Tech Lead Jul 2019 - Nov 2019
+              </p>
+              <p class="t-mono t-small t-muted">
+                Tech: Node.js, Golang, Vue.js, GraphQL
               </p>
               <p>
                 <a href="https://smspark.se/">SMS Park</a> provides sms- and
                 app-based parking serivces across all of Sweden.
               </p>
-              <p class="t-italic t-small t-muted">
-                Some of the tech used: Node.js, Golang, Vue, GraphQL
-              </p>
             </section>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
-                Studentvikarie
+              <h4 class="mb-2">
+                Humly (Studentvikarie)
               </h4>
-              <p class="t-muted t-small">
+              <p class="t-muted t-small t-mono mb-0">
                 Frontend Architect Jan 2019 - Jun 2019
               </p>
-              <p>
-                <a href="https://studentvikarie.se/">Studentvikarie</a> provides
-                a smooth experience for teacher substitutes, or educational
-                institutions looking for substitutes.
+              <p class="t-mono t-small t-muted">
+                Tech: Heroku, Node.js, GraphQL, Vue.js, React, Apollo
               </p>
-              <p class="t-italic t-small t-muted">
-                Some of the tech used: Heroku, Node.js, GraphQL, Vue, React,
-                Apollo
+              <p>
+                <a href="https://humly.io/">Humly</a> provides a marketplace
+                experience for teacher substitutes and educational institutions.
               </p>
             </section>
           </div>
@@ -193,13 +478,19 @@
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 Adfenix
               </h4>
-              <p class="t-muted t-small">Lead Frontend Developer 2018 - 2019</p>
+              <p class="t-muted t-small t-mono mb-0">
+                Lead Frontend Developer 2018 - 2019
+              </p>
+              <p class="t-small t-mono t-muted">
+                Tech: Docker, Kubernetes, Node.js, GraphQL, Vue.js, React,
+                Cypress, Jest
+              </p>
               <p>
-                <a href="https://adfenix.com/en/frontpage">Adfenix</a> enables
-                estate agents to find new customers using data-driven and highly
+                <a href="https://www.adfenix.com/">Adfenix</a> enables estate
+                agents to find new customers using data-driven and highly
                 targeted social media advertising.
               </p>
               <p>
@@ -207,20 +498,22 @@
                 life cycle of multiple client apps providing unique social media
                 advertising.
               </p>
-              <p class="t-small t-italic t-muted">
-                Some of the tech used: Docker, Kubernetes, Node.js, GraphQL,
-                Vue, React, Cypress, Jest
-              </p>
             </section>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 SpeedLedger
               </h4>
-              <p class="t-small t-muted">Frontend Architect 2016 - 2018</p>
+              <p class="t-small t-muted t-mono mb-0">
+                Frontend Architect 2016 - 2018
+              </p>
+              <p class="t-small t-mono t-muted">
+                Tech: Node.js, Babel, React, Redux, Webpack, Nightmare, Ava,
+                Enzyme
+              </p>
               <p>
                 <a href="https://speedledger.se">SpeedLedger</a> is bookkeeping,
                 simplified. With bank integrations, report generation, and
@@ -231,23 +524,25 @@
                 the world of bookkeeping by enhancing the web development
                 process.
               </p>
-              <p class="t-small t-italic t-muted">
-                Some of the tech used: Node.js, Babel, React, Redux, Webpack,
-                Nightmare, Ava, Enzyme
-              </p>
             </section>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 Saltside Technologies
               </h4>
-              <p class="t-muted t-small mb-0">
+              <p class="t-muted t-small t-mono mb-0">
                 Lead Frontend Developer 2015 - 2016
               </p>
-              <p class="t-muted t-small">Frontend Developer 2014 - 2015</p>
+              <p class="t-muted t-small t-mono mb-0">
+                Frontend Developer 2014 - 2015
+              </p>
+              <p class="t-muted t-small t-mono">
+                Tech: Grunt, Node.js, Express.js, Backbone.js, Less, Webpack,
+                Jade, Selenium, Nightwatch, Vagrant, Cron
+              </p>
               <p>
                 <a href="https://saltside.se">Saltside Technologies</a> provides
                 online marketplaces for emerging markets such as
@@ -263,20 +558,21 @@
                 delivered as quickly as possible, with the best experience
                 available for the user's device.
               </p>
-              <p class="tech-used t-muted">
-                Some of the tech used: Grunt, Node.js, Express.js, Backbone.js,
-                Less, Webpack, Jade, Selenium, Nightwatch, Vagrant, Cron
-              </p>
             </section>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <section class="experience">
-              <h4>
+              <h4 class="mb-2">
                 Carmenta AB
               </h4>
-              <p class="t-muted t-small">Full Stack Developer 2010 - 2014</p>
+              <p class="t-muted t-small t-mono mb-0">
+                Full Stack Developer 2010 - 2014
+              </p>
+              <p class="t-small t-mono t-muted">
+                Tech: C#, .NET 4.5, ASP.NET, MS SQL, jQuery, SASS
+              </p>
               <p>
                 <a href="http://www.carmenta.com">Carmenta</a> provides several
                 solutions for creating, publishing, and consuming, maps online.
@@ -293,10 +589,6 @@
                 >
                 web API and the frontend applications consuming it, sometimes
                 lending frontend expertise to customer-specific projects.
-              </p>
-              <p class="t-small t-italic t-muted">
-                Some of the tech used: C#, .NET 4.5, ASP.NET, MS SQL, jQuery,
-                SASS
               </p>
             </section>
           </div>
