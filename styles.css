@@ -131,6 +131,7 @@ a:focus-visible {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 500;
+  will-change: opacity;
 }
 
 .intro-links a {
@@ -144,16 +145,18 @@ a:focus-visible {
   right: 0;
   left: 0;
   height: var(--nav-height);
-  background: rgba(244, 241, 232, 0.92);
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--paper);
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  will-change: opacity;
 }
 
 .site-nav.is-docked {
   visibility: visible;
+}
+
+.site-nav[aria-hidden="false"] {
   pointer-events: auto;
 }
 
@@ -166,7 +169,6 @@ a:focus-visible {
   height: 100%;
   margin-inline: auto;
   padding-inline: var(--pad-x);
-  opacity: 0;
 }
 
 .menu-links {
@@ -184,6 +186,7 @@ a:focus-visible {
 .home-link {
   width: 44px;
   height: 44px;
+  will-change: transform;
 }
 
 .home-link img {
