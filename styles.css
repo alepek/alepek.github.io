@@ -10,9 +10,10 @@
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --pad-x: clamp(20px, 5vw, 76px);
-  --spine: clamp(40px, 7vw, 108px);
   --content-max: 60rem;
   --gap-role: clamp(46px, 6vw, 88px);
+  --nav-height: 76px;
+  --section-heading-gap: clamp(40px, 4.5vw, 64px);
 
   --t-name: clamp(38px, 5.6vw, 78px);
   --t-lede: clamp(19px, 2.5vw, 30px);
@@ -31,6 +32,7 @@
 .motion-pending .note,
 .motion-pending .intro-links a,
 .motion-pending .role,
+.motion-pending .section-label,
 .motion-pending .school > *,
 .motion-pending .contact > * {
   opacity: 0;
@@ -65,37 +67,10 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: var(--spine) minmax(0, 1fr);
-}
-
-.row + .row {
-  border-top: 1px solid var(--rule);
-}
-
-.spine {
-  display: flex;
-  justify-content: center;
-  padding: 32px 0;
-  border-right: 1px solid var(--rule);
-}
-
-.spine span {
-  position: sticky;
-  top: 28px;
-  height: fit-content;
-  color: var(--ink-50);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
-}
-
 .body {
   width: 100%;
   max-width: calc(var(--content-max) + var(--pad-x) + var(--pad-x));
+  margin-inline: auto;
   padding: clamp(30px, 5vw, 76px) var(--pad-x);
 }
 
@@ -153,17 +128,103 @@ a:focus-visible {
 .intro-links {
   display: flex;
   gap: 32px;
-  margin-top: 34px;
+  margin-top: 38px;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 500;
 }
 
+.intro-links a {
+  text-decoration: none;
+}
+
+.site-nav {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--nav-height);
+  background: rgba(244, 241, 232, 0.92);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.site-nav.is-docked {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--pad-x) + var(--pad-x));
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+  opacity: 0;
+}
+
+.menu-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.home-link {
+  width: 44px;
+  height: 44px;
+}
+
+.home-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.section-label {
+  margin: 0;
+  color: var(--ink-70);
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+#work,
+#contact {
+  scroll-margin-top: var(--nav-height);
+}
+
 .roles {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-role);
+  gap: 0;
   padding-block: clamp(52px, 7vw, 104px) clamp(72px, 9vw, 132px);
+}
+
+.roles .section-label {
+  margin-bottom: var(--section-heading-gap);
+}
+
+.role + .role {
+  margin-top: var(--gap-role);
 }
 
 .role-head {
@@ -213,8 +274,13 @@ a:focus-visible {
   line-height: 1.6;
 }
 
-.school h2 {
+.school {
+  padding-block: clamp(76px, 9vw, 128px);
+}
+
+.school h3 {
   margin: 0;
+  margin-top: var(--section-heading-gap);
   font-size: clamp(18px, 2.2vw, 24px);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -231,8 +297,17 @@ a:focus-visible {
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  padding-bottom: clamp(48px, 6vw, 96px);
+  gap: 0;
+  min-height: min(72vh, 680px);
+  padding-block: clamp(76px, 9vw, 128px);
+}
+
+.contact .section-label {
+  margin-bottom: var(--section-heading-gap);
+}
+
+.contact .links {
+  margin-top: 28px;
 }
 
 .contact p {
@@ -253,26 +328,10 @@ a:focus-visible {
 }
 
 @media (max-width: 640px) {
-  .row {
-    display: block;
-  }
-
-  .spine {
-    display: block;
-    padding: 26px 28px 0;
-    border-right: 0;
-  }
-
-  .spine span {
-    position: static;
-    display: block;
-    color: var(--ink-70);
-    letter-spacing: 0.28em;
-    writing-mode: horizontal-tb;
-  }
-
-  .row:first-child .spine {
-    display: none;
+  :root {
+    --gap-role: 68px;
+    --nav-height: 64px;
+    --section-heading-gap: 38px;
   }
 
   .body {
@@ -303,12 +362,18 @@ a:focus-visible {
     line-height: 1.95;
   }
 
+  .nav-link,
   .intro-links {
     font-size: 14px;
   }
 
+  .home-link {
+    width: 40px;
+    height: 40px;
+  }
+
   .roles {
-    gap: 68px;
+    gap: 0;
     padding-block: 50px 92px;
   }
 
@@ -328,7 +393,7 @@ a:focus-visible {
 
   .school,
   .contact {
-    padding-block: 38px 68px;
+    padding-block: 68px 88px;
   }
 
   .years {
@@ -340,7 +405,6 @@ a:focus-visible {
 @media print {
   :root {
     --paper: #fff;
-    --spine: 24px;
   }
 
   @page {
@@ -361,20 +425,17 @@ a:focus-visible {
     padding-block: 12mm;
   }
 
+  .site-nav,
   .intro-links {
     display: none;
   }
 
-  .spine {
-    padding: 0;
-  }
-
-  .spine span {
-    display: none;
-  }
-
   .roles {
-    gap: 8mm;
+    gap: 0;
+  }
+
+  .role + .role {
+    margin-top: 8mm;
   }
 
   .role {

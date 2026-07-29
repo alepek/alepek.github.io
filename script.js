@@ -1,15 +1,28 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const desktopMap = window.matchMedia("(min-width: 641px)");
-const sectionLinks = document.querySelectorAll(".intro-links a[href^='#']");
-const initialHash = ["#work", "#contact"].includes(window.location.hash)
+const siteNav = document.querySelector(".site-nav");
+const siteNavInner = document.querySelector(".site-nav-inner");
+const introLinks = document.querySelector(".intro-links");
+const homeLink = document.querySelector(".home-link");
+const sectionLinks = document.querySelectorAll(
+  ".intro-links a[href^='#'], .site-nav a[href^='#']",
+);
+const initialHash = ["#work", "#contact", "#top"].includes(
+  window.location.hash,
+)
   ? window.location.hash
   : "";
 const initialTarget = initialHash
   ? document.querySelector(initialHash)
   : null;
 
-const targetScrollPosition = (target) =>
-  window.scrollY + target.getBoundingClientRect().top;
+const targetScrollPosition = (target) => {
+  const navOffset = target.id === "top" ? 0 : (siteNav?.offsetHeight ?? 0);
+
+  return Math.max(
+    0,
+    window.scrollY + target.getBoundingClientRect().top - navOffset,
+  );
+};
 
 if (initialTarget) {
   const alignInitialTarget = () => {
@@ -29,32 +42,57 @@ if (initialTarget) {
 if (window.anime) {
   const { animate, stagger, utils } = window.anime;
   const introText = ".name, .lede, .note, .intro-links a";
-  const secondaryContent = ".role, .school > *, .contact > *";
+  const secondaryContent =
+    ".role, .section-label, .school h3, .school p, .contact > p, .contact .links";
   const entranceReady =
     document.documentElement.classList.contains("motion-pending");
-  const startedScrolled = window.scrollY > 1 || Boolean(initialTarget);
+  const startedScrolled =
+    window.scrollY > 1 || Boolean(initialTarget && initialTarget.id !== "top");
   const entranceAnimations = [];
   let entranceActive = false;
-  let mapVisible = startedScrolled;
-  let mapAnimation;
+  let navDocked = false;
+  let navAnimation;
+  let portraitAnimation;
 
   document.documentElement.dataset.animation = "animejs";
 
-  const setMapVisibility = (visible, animated = true) => {
-    const shouldShow = desktopMap.matches ? visible : true;
+  const isNavDocked = () =>
+    introLinks.getBoundingClientRect().bottom <= siteNav.offsetHeight;
 
-    if (mapAnimation) mapAnimation.cancel();
-    mapVisible = shouldShow;
+  const setNavDocked = (docked, animated = true) => {
+    if (docked === navDocked && animated) return;
+
+    navDocked = docked;
+    if (navAnimation) navAnimation.cancel();
+    if (portraitAnimation) portraitAnimation.cancel();
+
+    siteNav.setAttribute("aria-hidden", String(!docked));
+    siteNav.inert = !docked;
+    introLinks.setAttribute("aria-hidden", String(docked));
+    introLinks.inert = docked;
+
+    if (docked) siteNav.classList.add("is-docked");
 
     if (!animated || reducedMotion.matches) {
-      utils.set(".spine", { opacity: shouldShow ? 1 : 0 });
+      utils.set(siteNavInner, { opacity: docked ? 1 : 0 });
+      utils.set(homeLink, { scale: docked ? 1 : 0.86 });
+      siteNav.classList.toggle("is-docked", docked);
       return;
     }
 
-    mapAnimation = animate(".spine", {
-      opacity: shouldShow ? 1 : 0,
-      duration: shouldShow ? 720 : 420,
-      ease: shouldShow ? "outQuint" : "inOutCubic",
+    navAnimation = animate(siteNavInner, {
+      opacity: docked ? 1 : 0,
+      duration: docked ? 560 : 300,
+      ease: docked ? "outQuint" : "inOutCubic",
+      onComplete: () => {
+        if (!navDocked) siteNav.classList.remove("is-docked");
+      },
+    });
+
+    portraitAnimation = animate(homeLink, {
+      scale: docked ? 1 : 0.9,
+      duration: docked ? 620 : 340,
+      ease: docked ? "outQuint" : "inOutCubic",
     });
   };
 
@@ -70,24 +108,12 @@ if (window.anime) {
 
   const handleScroll = () => {
     if (window.scrollY > 1) revealEntrance();
-
-    if (!desktopMap.matches) return;
-
-    if (!mapVisible && window.scrollY > 1) {
-      setMapVisibility(true);
-    } else if (mapVisible && window.scrollY <= 1) {
-      setMapVisibility(false);
-    }
+    setNavDocked(isNavDocked());
   };
 
-  setMapVisibility(startedScrolled, false);
-  window.requestAnimationFrame(() => {
-    document.documentElement.classList.remove("map-pending");
-  });
+  setNavDocked(isNavDocked(), false);
   window.addEventListener("scroll", handleScroll, { passive: true });
-  desktopMap.addEventListener("change", () => {
-    setMapVisibility(window.scrollY > 1, false);
-  });
+  window.addEventListener("resize", () => setNavDocked(isNavDocked(), false));
 
   if (entranceReady && !startedScrolled && !reducedMotion.matches) {
     utils.set(".name", { opacity: 0, translateY: 8 });
@@ -204,6 +230,20 @@ if (window.anime) {
     });
   }
 } else {
+  const syncNav = () => {
+    const docked =
+      introLinks.getBoundingClientRect().bottom <= siteNav.offsetHeight;
+
+    siteNav.classList.toggle("is-docked", docked);
+    siteNavInner.style.opacity = docked ? "1" : "0";
+    siteNav.setAttribute("aria-hidden", String(!docked));
+    siteNav.inert = !docked;
+    introLinks.setAttribute("aria-hidden", String(docked));
+    introLinks.inert = docked;
+  };
+
   window.clearTimeout(window.motionFallback);
-  document.documentElement.classList.remove("map-pending", "motion-pending");
+  document.documentElement.classList.remove("motion-pending");
+  syncNav();
+  window.addEventListener("scroll", syncNav, { passive: true });
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="map-pending">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,20 +10,6 @@
       name="description"
       content="Alexander Pekkari is a hands-on software engineer in Gothenburg, working across product, technology and delivery."
     />
-    <style>
-      @media (min-width: 641px) {
-        .map-pending .spine {
-          opacity: 0 !important;
-        }
-      }
-    </style>
-    <noscript>
-      <style>
-        .map-pending .spine {
-          opacity: 1 !important;
-        }
-      </style>
-    </noscript>
     <script>
       const pageRoot = document.documentElement;
 
@@ -32,7 +18,7 @@
       }
 
       window.motionFallback = window.setTimeout(() => {
-        pageRoot.classList.remove("map-pending", "motion-pending");
+        pageRoot.classList.remove("motion-pending");
       }, 2500);
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,46 +35,63 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <main>
-      <div class="row">
-        <div class="spine" aria-hidden="true">
-          <span>alexander pekkari</span>
-        </div>
-        <header class="body intro">
-          <div class="intro-content">
-            <div class="intro-head">
-              <h1 class="name">Hey! I'm Alex.</h1>
-              <img
-                class="portrait"
-                src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=320"
-                alt="Portrait of Alexander Pekkari"
-                width="160"
-                height="160"
-                fetchpriority="high"
-              />
-            </div>
-            <p class="lede">
-              I work comfortably across the full stack, from shaping product
-              direction to building and delivering the systems behind it.
-            </p>
-            <p class="note">
-              At Cerve, I’ve recently focused on delivering useful agentic
-              product workflows with Google ADK and the Vercel AI SDK.
-            </p>
-            <nav class="intro-links" aria-label="Page sections">
-              <a href="#work">Work</a>
-              <a href="#contact">Contact</a>
-            </nav>
+    <main id="top">
+      <header class="body intro">
+        <div class="intro-content">
+          <div class="intro-head">
+            <h1 class="name">Hey! I'm Alex.</h1>
+            <img
+              class="portrait"
+              src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=320"
+              alt="Portrait of Alexander Pekkari"
+              width="160"
+              height="160"
+              fetchpriority="high"
+            />
           </div>
-        </header>
-      </div>
+          <p class="lede">
+            I work comfortably across the full stack, from shaping product
+            direction to building and delivering the systems behind it.
+          </p>
+          <p class="note">
+            At Cerve, I’ve recently focused on delivering useful agentic
+            product workflows with Google ADK and the Vercel AI SDK.
+          </p>
+          <nav class="intro-links" aria-label="Page sections">
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
 
-      <div class="row" id="work">
-        <div class="spine" aria-hidden="true"><span>work</span></div>
-        <section class="body roles" aria-label="Work experience">
+      <div class="site-flow">
+        <nav
+          class="site-nav"
+          aria-label="Page sections"
+          aria-hidden="true"
+          inert
+        >
+          <div class="site-nav-inner">
+            <div class="menu-links">
+              <a class="nav-link" href="#work">Work</a>
+              <a class="nav-link" href="#contact">Contact</a>
+            </div>
+            <a class="home-link" href="#top" aria-label="Back to top">
+              <img
+                src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=160"
+                alt=""
+                width="48"
+                height="48"
+              />
+            </a>
+          </div>
+        </nav>
+
+        <section class="body roles" id="work" aria-labelledby="work-heading">
+          <h2 class="section-label" id="work-heading">Work</h2>
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Cerve</h2>
+              <h3 class="company">Cerve</h3>
               <span class="title">Founding Engineer</span>
               <span class="years">2025 — now</span>
             </div>
@@ -104,7 +107,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Meltwater</h2>
+              <h3 class="company">Meltwater</h3>
               <span class="title">Senior Software Engineer</span>
               <span class="years">2019 — 2025</span>
             </div>
@@ -120,7 +123,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">SMS Park</h2>
+              <h3 class="company">SMS Park</h3>
               <span class="title">Frontend Tech Lead</span>
               <span class="years">Jul — Nov 2019</span>
             </div>
@@ -133,7 +136,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Humly</h2>
+              <h3 class="company">Humly</h3>
               <span class="title">Frontend Architect</span>
               <span class="years">Jan — Jun 2019</span>
             </div>
@@ -148,7 +151,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Adfenix</h2>
+              <h3 class="company">Adfenix</h3>
               <span class="title">Lead Frontend Developer</span>
               <span class="years">2018 — 2019</span>
             </div>
@@ -164,7 +167,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">SpeedLedger</h2>
+              <h3 class="company">SpeedLedger</h3>
               <span class="title">Frontend Architect</span>
               <span class="years">2016 — 2018</span>
             </div>
@@ -179,7 +182,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Saltside</h2>
+              <h3 class="company">Saltside</h3>
               <span class="title"
                 >Lead Frontend Developer · Frontend Developer</span
               >
@@ -197,7 +200,7 @@
 
           <article class="role">
             <div class="role-head">
-              <h2 class="company">Carmenta</h2>
+              <h3 class="company">Carmenta</h3>
               <span class="title">Full Stack Developer</span>
               <span class="years">2010 — 2014</span>
             </div>
@@ -209,12 +212,13 @@
             <p class="stack">C# · .NET · ASP.NET · MS SQL · jQuery · Sass</p>
           </article>
         </section>
-      </div>
 
-      <div class="row">
-        <div class="spine" aria-hidden="true"><span>education</span></div>
-        <section class="body school" aria-label="Education">
-          <h2>Chalmers University of Technology</h2>
+        <section
+          class="body school"
+          aria-labelledby="education-heading"
+        >
+          <h2 class="section-label" id="education-heading">Education</h2>
+          <h3>Chalmers University of Technology</h3>
           <p>
             Software Engineering 2007—2010 · Information Technology
             2004—2007<br />
@@ -225,11 +229,9 @@
             >.
           </p>
         </section>
-      </div>
 
-      <div class="row" id="contact">
-        <div class="spine" aria-hidden="true"><span>contact</span></div>
-        <footer class="body contact">
+        <footer class="body contact" id="contact">
+          <h2 class="section-label">Contact</h2>
           <p>
             You can reach me by email, or find my work on GitHub and my
             experience on LinkedIn.
