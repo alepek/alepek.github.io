@@ -5,34 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f4f1e8" />
-    <link rel="icon" href="data:," />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23171612'/><text x='16' y='24' fill='%23f4f1e8' font-family='system-ui,sans-serif' font-size='23' font-weight='700' text-anchor='middle'>A</text></svg>"
+    />
     <title>Alexander Pekkari — software engineer</title>
     <meta
       name="description"
       content="Alexander Pekkari is a hands-on software engineer in Gothenburg, working across product, technology and delivery."
     />
-    <script>
-      const pageRoot = document.documentElement;
-
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        pageRoot.classList.add("motion-pending");
-      }
-
-      window.motionFallback = window.setTimeout(() => {
-        pageRoot.classList.remove("motion-pending");
-      }, 2500);
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- The two faces that carry the first screen. Preloading them starts the
+         fetch before the stylesheet has been parsed, so on a warm connection
+         they land inside the page fade and there's no visible swap. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,300&amp;display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="fonts/archivo-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/newsreader-latin-300.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link rel="stylesheet" href="styles.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"
-      defer
-    ></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -43,7 +42,7 @@
             <h1 class="name">Hey! I'm Alex.</h1>
             <img
               class="portrait"
-              src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=320"
+              src="portrait.webp"
               alt="Portrait of Alexander Pekkari"
               width="160"
               height="160"
@@ -69,12 +68,7 @@
               <a class="nav-link" href="#contact">Contact</a>
             </div>
             <a class="home-link" href="#top" aria-label="Back to top">
-              <img
-                src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=160"
-                alt=""
-                width="48"
-                height="48"
-              />
+              <img src="portrait.webp" alt="" width="48" height="48" />
             </a>
           </div>
         </nav>
@@ -131,8 +125,7 @@
                   href="https://www.easypark.com/en-se"
                   target="_blank"
                   rel="noopener"
-                  title="SMS Park is now part of EasyPark"
-                  >SMS Park</a
+                  >SMS Park (now EasyPark)</a
                 >
               </h3>
               <span class="title">Frontend Tech Lead</span>
@@ -272,15 +265,20 @@
           </article>
         </section>
 
-        <section
-          class="body school"
-          aria-labelledby="education-heading"
-        >
+        <section class="body school" aria-labelledby="education-heading">
           <h2 class="section-label" id="education-heading">Education</h2>
           <h3>Chalmers University of Technology</h3>
+          <ul class="programmes">
+            <li>
+              <span>Software Engineering</span>
+              <span class="years">2007 — 2010</span>
+            </li>
+            <li>
+              <span>Information Technology</span>
+              <span class="years">2004 — 2007</span>
+            </li>
+          </ul>
           <p>
-            Software Engineering 2007—2010 · Information Technology
-            2004—2007<br />
             Master's thesis:
             <a
               href="https://odr.chalmers.se/handle/20.500.12380/116615"
@@ -292,8 +290,12 @@
           </p>
         </section>
 
-        <footer class="body contact" id="contact">
-          <h2 class="section-label">Contact</h2>
+        <section
+          class="body contact"
+          id="contact"
+          aria-labelledby="contact-heading"
+        >
+          <h2 class="section-label" id="contact-heading">Contact</h2>
           <p>
             You can reach me by email, or find my work on GitHub and my
             experience on LinkedIn.
@@ -313,7 +315,7 @@
               >LinkedIn</a
             >
           </div>
-        </footer>
+        </section>
       </div>
     </main>
   </body>

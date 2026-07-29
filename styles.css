@@ -1,18 +1,55 @@
+/* Self-hosted, so a cold load needs no third-party round trip before text can
+   be styled. Latin subsets as served by Google Fonts; Archivo is one variable
+   file covering 400–700. All three families are SIL OFL — see fonts/README.md. */
+@font-face {
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/archivo-latin-var.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Newsreader;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("fonts/newsreader-latin-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/plex-mono-latin-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/plex-mono-latin-500.woff2") format("woff2");
+}
+
 :root {
   --paper: #f4f1e8;
   --ink: #171612;
   --ink-70: #3c3830;
   --ink-50: #6d675a;
-  --rule: #b8b1a2;
 
-  --sans: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --serif: Newsreader, Georgia, "Times New Roman", serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Webfont first, then a full system stack — the fallback is what renders
+     during the swap, so it needs to stand on its own. */
+  --sans: Archivo, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --serif: Newsreader, Georgia, "Times New Roman", ui-serif, serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
 
   --pad-x: clamp(20px, 5vw, 76px);
   --content-max: 60rem;
   --gap-role: clamp(46px, 6vw, 88px);
-  --nav-lift: clamp(96px, calc(50vh - 220px), 280px);
   --nav-lift: clamp(96px, calc(50svh - 220px), 280px);
   --nav-height: 76px;
   --section-heading-gap: clamp(40px, 4.5vw, 64px);
@@ -22,26 +59,42 @@
   --t-company: clamp(22px, 2.9vw, 34px);
   --t-body: clamp(15px, 1.8vw, 18px);
   --t-meta: clamp(12px, 1.4vw, 14px);
+
+  /* One text column shared by role copy and the right-hand date column, so
+     dates land on the same edge the prose does. */
+  --measure: calc(44 * var(--t-body));
 }
 
 * {
   box-sizing: border-box;
 }
 
-.motion-pending .name,
-.motion-pending .portrait,
-.motion-pending .lede,
-.motion-pending .note,
-.motion-pending .nav-link,
-.motion-pending .role,
-.motion-pending .section-label,
-.motion-pending .school > *,
-.motion-pending .contact > * {
-  opacity: 0;
-}
-
 html {
   -webkit-text-size-adjust: 100%;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* One short fade over the whole page. Being pure CSS it can't strand the
+     content the way a JS-gated reveal can, and it covers the webfont swap on a
+     cold load. */
+  body {
+    animation: page-in 420ms ease-out both;
+  }
+
+  /* Held behind a class the script adds on load. The nav links leave #work or
+     #contact in the URL, and if smooth is already active when the page loads
+     with a fragment the browser *animates* the jump to it — so every refresh
+     replayed a long scroll from the top. Deferring it keeps the initial jump
+     instant and only makes in-page clicks smooth. */
+  html.is-ready {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -79,9 +132,14 @@ a:focus-visible {
 .intro {
   display: flex;
   align-items: center;
-  min-height: 100vh;
   min-height: 100svh;
   padding-block: clamp(48px, 8vh, 96px);
+}
+
+/* Without this the flex item shrink-wraps to the lede's measure and the
+   portrait floats short of the content edge every other section aligns to. */
+.intro-content {
+  width: 100%;
 }
 
 .intro-head {
@@ -162,18 +220,19 @@ a:focus-visible {
   text-decoration: none;
 }
 
+/* visibility keeps it out of the tab order while hidden, and transitioning it
+   alongside opacity lets the fade-out finish before it disappears. */
 .home-link {
   width: 44px;
   height: 44px;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
-  will-change: transform;
+  transition: opacity 240ms ease, visibility 240ms;
 }
 
 .site-nav.is-docked .home-link {
+  opacity: 1;
   visibility: visible;
-  pointer-events: auto;
 }
 
 .home-link img {
@@ -203,7 +262,6 @@ a:focus-visible {
 .roles {
   display: flex;
   flex-direction: column;
-  gap: 0;
   padding-block: clamp(52px, 7vw, 104px) clamp(72px, 9vw, 132px);
 }
 
@@ -220,13 +278,26 @@ a:focus-visible {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 6px 18px;
+  max-width: var(--measure);
 }
 
-.company {
+.company,
+.school h3 {
   margin: 0;
   font-size: var(--t-company);
   font-weight: 600;
   letter-spacing: -0.025em;
+}
+
+/* Nine underlined headings in a row is a lot of texture; keep the affordance
+   for hover and keyboard focus instead. */
+.company a {
+  text-decoration: none;
+}
+
+.company a:hover,
+.company a:focus-visible {
+  text-decoration: underline;
 }
 
 .title,
@@ -246,7 +317,7 @@ a:focus-visible {
 }
 
 .role p {
-  max-width: 44em;
+  max-width: var(--measure);
   margin: 16px 0 0;
   font-size: var(--t-body);
   line-height: 1.6;
@@ -267,26 +338,43 @@ a:focus-visible {
 }
 
 .school h3 {
-  margin: 0;
   margin-top: var(--section-heading-gap);
-  font-size: clamp(18px, 2.2vw, 24px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
 }
 
+/* One row per programme, dates in the same right-hand column the work entries
+   use — the two used to share a single dense line. */
+.programmes {
+  max-width: var(--measure);
+  margin: 26px 0 0;
+  padding: 0;
+  font-size: var(--t-body);
+  list-style: none;
+}
+
+.programmes li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+  line-height: 1.6;
+}
+
+.programmes li + li {
+  margin-top: 12px;
+}
+
+/* Same prose treatment as the work entries — an institution is the same tier of
+   information as an employer, so it shouldn't read as metadata. */
 .school p {
-  margin: 14px 0 0;
-  color: var(--ink-70);
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 2.1;
+  max-width: var(--measure);
+  margin: 30px 0 0;
+  font-size: var(--t-body);
+  line-height: 1.6;
 }
 
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  min-height: min(72vh, 680px);
   padding-block: clamp(76px, 9vw, 128px);
 }
 
@@ -315,10 +403,11 @@ a:focus-visible {
   font-size: 12px;
 }
 
-@media (max-width: 640px) {
+/* 768, not 640: below this the three-column role head no longer fits and the
+   date wraps to a line of its own. */
+@media (max-width: 767px) {
   :root {
     --gap-role: 68px;
-    --nav-lift: clamp(64px, calc(50vh - 224px), 190px);
     --nav-lift: clamp(64px, calc(50svh - 224px), 190px);
     --nav-height: 64px;
     --pad-x: 28px;
@@ -363,7 +452,6 @@ a:focus-visible {
   }
 
   .roles {
-    gap: 0;
     padding-block: 50px 92px;
   }
 
@@ -379,6 +467,16 @@ a:focus-visible {
 
   .role p {
     margin-top: 20px;
+  }
+
+  /* The date drops onto its own line here, so each programme needs more room
+     around it to stay readable as one unit. */
+  .programmes li + li {
+    margin-top: 26px;
+  }
+
+  .school p {
+    margin-top: 36px;
   }
 
   .school,
@@ -423,15 +521,13 @@ a:focus-visible {
     margin-top: 0;
   }
 
-  .roles {
-    gap: 0;
-  }
-
   .role + .role {
     margin-top: 8mm;
   }
 
-  .role {
+  .role,
+  .school,
+  .contact {
     break-inside: avoid;
   }
 
