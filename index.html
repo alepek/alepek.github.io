@@ -1,633 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f4f1e8" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather"
-      rel="stylesheet"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23171612'/><text x='16' y='24' fill='%23f4f1e8' font-family='system-ui,sans-serif' font-size='23' font-weight='700' text-anchor='middle'>A</text></svg>"
+    />
+    <title>Alexander Pekkari — software engineer</title>
+    <meta
+      name="description"
+      content="Alexander Pekkari is a hands-on software engineer in Gothenburg, working across product, technology and delivery."
+    />
+    <!-- The two faces that carry the first screen. Preloading them starts the
+         fetch before the stylesheet has been parsed, so on a warm connection
+         they land inside the page fade and there's no visible swap. -->
+    <link
+      rel="preload"
+      href="fonts/archivo-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      crossorigin="anonymous"
+      rel="preload"
+      href="fonts/newsreader-latin-300.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <title>Alexander Pekkari's GH page</title>
-    <!-- Animation styles - flicker in -->
-    <style>
-      .flicker-in-1 {
-        -webkit-animation: flicker-in-1 2500ms
-          cubic-bezier(0.6, 0.04, 0.98, 0.335) 500ms both;
-        animation: flicker-in-1 2500ms cubic-bezier(0.6, 0.04, 0.98, 0.335)
-          500ms both;
-      }
-      @-webkit-keyframes flicker-in-1 {
-        0% {
-          -webkit-filter: blur(4px);
-          filter: blur(4px);
-          opacity: 0;
-        }
-        10% {
-          opacity: 0;
-        }
-        10.1% {
-          opacity: 1;
-        }
-        10.2% {
-          opacity: 0;
-        }
-        20% {
-          opacity: 0;
-        }
-        20.1% {
-          opacity: 1;
-        }
-        20.6% {
-          -webkit-filter: blur(12px);
-          filter: blur(12px);
-          opacity: 0;
-        }
-        30% {
-          opacity: 0;
-        }
-        30.1% {
-          opacity: 1;
-        }
-        30.5% {
-          opacity: 1;
-        }
-        30.6% {
-          opacity: 0;
-        }
-        45% {
-          -webkit-filter: blur(4px);
-          filter: blur(4px);
-          opacity: 0;
-        }
-        45.1% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 1;
-        }
-        55% {
-          opacity: 1;
-        }
-        55.1% {
-          opacity: 0;
-        }
-        57% {
-          opacity: 0;
-        }
-        57.1% {
-          opacity: 1;
-        }
-        60% {
-          opacity: 1;
-        }
-        60.1% {
-          opacity: 0;
-        }
-        65% {
-          opacity: 0;
-        }
-        65.1% {
-          opacity: 1;
-        }
-        75% {
-          -webkit-filter: blur(0);
-          filter: blur(0);
-          opacity: 1;
-        }
-        75.1% {
-          opacity: 0;
-        }
-        77% {
-          opacity: 0;
-        }
-        77.1% {
-          opacity: 1;
-        }
-        85% {
-          opacity: 1;
-        }
-        85.1% {
-          opacity: 0;
-        }
-        86% {
-          opacity: 0;
-        }
-        86.1% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes flicker-in-1 {
-        0% {
-          -webkit-filter: blur(12px);
-          filter: blur(12px);
-          opacity: 0;
-        }
-        10% {
-          opacity: 0;
-        }
-        10.1% {
-          opacity: 1;
-        }
-        10.2% {
-          opacity: 0;
-        }
-        20% {
-          opacity: 0;
-        }
-        20.1% {
-          opacity: 1;
-        }
-        20.6% {
-          opacity: 0;
-          -webkit-filter: blur(12px);
-          filter: blur(12px);
-        }
-        30% {
-          opacity: 0;
-        }
-        30.1% {
-          opacity: 1;
-        }
-        30.5% {
-          opacity: 1;
-        }
-        30.6% {
-          opacity: 0;
-        }
-        45% {
-          opacity: 0;
-          -webkit-filter: blur(4px);
-          filter: blur(4px);
-        }
-        45.1% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 1;
-        }
-        55% {
-          opacity: 1;
-        }
-        55.1% {
-          opacity: 0;
-        }
-        57% {
-          opacity: 0;
-        }
-        57.1% {
-          opacity: 1;
-        }
-        60% {
-          opacity: 1;
-        }
-        60.1% {
-          opacity: 0;
-        }
-        65% {
-          opacity: 0;
-        }
-        65.1% {
-          opacity: 1;
-        }
-        75% {
-          -webkit-filter: blur(0);
-          filter: blur(0);
-          opacity: 1;
-        }
-        75.1% {
-          opacity: 0;
-        }
-        77% {
-          opacity: 0;
-        }
-        77.1% {
-          opacity: 1;
-        }
-        85% {
-          opacity: 1;
-        }
-        85.1% {
-          opacity: 0;
-        }
-        86% {
-          opacity: 0;
-        }
-        86.1% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-    </style>
-    <!-- Animation styles - puff in -->
-    <style>
-      .puff-in-center-0 {
-        -webkit-animation: puff-in-center 500ms
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
-      }
-      .puff-in-center-1 {
-        -webkit-animation: puff-in-center 500ms
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both 250ms;
-        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both 250ms;
-      }
-      .puff-in-center-2 {
-        -webkit-animation: puff-in-center 500ms
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both 500ms;
-        animation: puff-in-center 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both 500ms;
-      }
-      @-webkit-keyframes puff-in-center {
-        0% {
-          -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-          -webkit-filter: blur(4px);
-          filter: blur(4px);
-          opacity: 0;
-        }
-        100% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-          -webkit-filter: blur(0px);
-          filter: blur(0px);
-          opacity: 1;
-        }
-      }
-      @keyframes puff-in-center {
-        0% {
-          -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-          -webkit-filter: blur(4px);
-          filter: blur(4px);
-          opacity: 0;
-        }
-        100% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-          -webkit-filter: blur(0px);
-          filter: blur(0px);
-          opacity: 1;
-        }
-      }
-    </style>
-    <!-- Simple document styles -->
-    <style>
-      html,
-      body {
-        background-color: #000;
-        color: #f2f1f5;
-        font-size: 18px;
-        font-family: "Merriweather", serif;
-        font-weight: 400;
-      }
-
-      a {
-        color: rgb(56, 119, 255);
-        text-shadow: blue 0 1px 1px;
-        transition: all 200ms ease;
-      }
-
-      a:hover {
-        color: rgb(112, 138, 252);
-        text-shadow: blue 1px 1px 2px;
-        text-decoration: none;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-weight: 700;
-      }
-
-      .mb-0 {
-        margin-bottom: 0;
-      }
-
-      .mb-1 {
-        margin-bottom: 0.25rem;
-      }
-
-      .mb-2 {
-        margin-bottom: 0.5rem;
-      }
-
-      .t-center {
-        text-align: center;
-      }
-
-      .t-muted {
-        opacity: 0.75;
-      }
-
-      .t-italic {
-        font-style: italic;
-      }
-
-      .t-small {
-        font-size: 0.85rem;
-      }
-
-      .t-mono {
-        font-family: monospace;
-      }
-
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5vh 0 15vh;
-      }
-
-      .hero img {
-        border-radius: 100%;
-      }
-
-      .hero > * {
-        margin: 1rem 0;
-      }
-
-      .portrait {
-        height: 180px;
-        width: 180px;
-        display: inline-block;
-      }
-
-      .portrait img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-      .container {
-        max-width: 640px;
-      }
-
-      .section-heading {
-        margin: 2rem 0;
-      }
-
-      section.contact,
-      section.education,
-      section.experience {
-        margin: 2.5rem 0;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
-
   <body>
-    <div class="container">
-      <div class="row" id="top">
-        <div class="col col-xs t-center">
-          <div class="hero">
-            <div class="portrait puff-in-center-0">
-              <img
-                class="img-fluid"
-                src="http://avatars1.githubusercontent.com/u/5012939?v=3&s=460"
-                alt="alepek"
-              />
-            </div>
-            <h2 class="puff-in-center-1">Hey there! I'm Alex.</h2>
-            <p class="puff-in-center-2">
-              I like working with JavaScript/TypeScript and open source
-              software.
-            </p>
-            <h2 class="flicker-in-1">↯</h2>
+    <main id="top">
+      <header class="body intro">
+        <div class="intro-content">
+          <div class="intro-head">
+            <h1 class="name">Hey! I'm Alex.</h1>
+            <img
+              class="portrait"
+              src="portrait.webp"
+              alt="Portrait of Alexander Pekkari"
+              width="160"
+              height="160"
+              fetchpriority="high"
+            />
           </div>
+          <p class="lede">
+            I work comfortably across the full stack, from shaping product
+            direction to building and delivering the systems behind it.
+          </p>
+          <p class="note">
+            At Cerve, I’ve recently focused on delivering useful agentic
+            product workflows with Google ADK and the Vercel AI SDK.
+          </p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h2 class="section-heading">Work experience</h2>
-          <section class="experience">
-            <h4 class="mb-2">Cerve</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Founding Engineer 2025 -
-            </p>
-            <p class="t-small t-mono t-muted">
-              Tech: TypeScript, Node.js, GraphQL, AI/LLMs
-            </p>
+      </header>
+
+      <div class="site-flow">
+        <nav class="site-nav" aria-label="Page sections">
+          <div class="site-nav-inner">
+            <div class="menu-links">
+              <a class="nav-link" href="#work">Work</a>
+              <a class="nav-link" href="#contact">Contact</a>
+            </div>
+            <a class="home-link" href="#top" aria-label="Back to top">
+              <img src="portrait.webp" alt="" width="48" height="48" />
+            </a>
+          </div>
+        </nav>
+
+        <section class="body roles" id="work" aria-labelledby="work-heading">
+          <h2 class="section-label" id="work-heading">Work</h2>
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a href="https://cerve.com/" target="_blank" rel="noopener"
+                  >Cerve</a
+                >
+              </h3>
+              <span class="title">Founding Engineer</span>
+              <span class="years">2025 — now</span>
+            </div>
             <p>
-              Founding Engineer at Cerve, a supply chain intelligence platform
-              for the food and beverage industry. Building systems that turn
-              fragmented trading data into actionable insights and automations
-              using AI and data integrations.
+              Working across the stack on data integrations, AI-assisted
+              workflows and product systems for the food and beverage supply
+              chain.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">Meltwater</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Senior Software Engineer Nov 2019 - 2025
+            <p class="stack">
+              TypeScript · Node.js · GraphQL · Google ADK · Vercel AI SDK
             </p>
-            <p class="t-small t-mono t-muted">
-              Tech: TypeScript, Node.js, Vue.js, Stencil.js, GraphQL, Apollo
-            </p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a
+                  href="https://www.meltwater.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >Meltwater</a
+                >
+              </h3>
+              <span class="title">Senior Software Engineer</span>
+              <span class="years">2019 — 2025</span>
+            </div>
             <p>
-              <a href="https://meltwater.com/">Meltwater</a> is an industry
-              leader in complex media and social insights.
+              Worked across customer-facing products and a shared component
+              system for media and social intelligence.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">SMS Park</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Frontend Tech Lead Jul 2019 - Nov 2019
+            <p class="stack">
+              TypeScript · Node.js · Vue.js · Stencil.js · GraphQL · Apollo ·
+              Vercel AI SDK
             </p>
-            <p class="t-mono t-small t-muted">
-              Tech: Node.js, Golang, Vue.js, GraphQL
-            </p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a
+                  href="https://www.easypark.com/en-se"
+                  target="_blank"
+                  rel="noopener"
+                  >SMS Park (now EasyPark)</a
+                >
+              </h3>
+              <span class="title">Frontend Tech Lead</span>
+              <span class="years">Jul — Nov 2019</span>
+            </div>
             <p>
-              <a href="https://smspark.se/">SMS Park</a> provides sms- and
-              app-based parking serivces across all of Sweden.
+              Led frontend work for an SMS- and app-based parking service used
+              across Sweden.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">Humly (Studentvikarie)</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Frontend Architect Jan 2019 - Jun 2019
-            </p>
-            <p class="t-mono t-small t-muted">
-              Tech: Heroku, Node.js, GraphQL, Vue.js, React, Apollo
-            </p>
+            <p class="stack">Node.js · Go · Vue.js · GraphQL</p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a href="https://humly.io/" target="_blank" rel="noopener"
+                  >Humly (Studentvikarie)</a
+                >
+              </h3>
+              <span class="title">Frontend Architect</span>
+              <span class="years">Jan — Jun 2019</span>
+            </div>
             <p>
-              <a href="https://humly.io/">Humly</a> provides a marketplace
-              experience for teacher substitutes and educational institutions.
+              Helped shape the frontend architecture for a marketplace
+              connecting substitute teachers with schools.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">Adfenix</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Lead Frontend Developer 2018 - 2019
+            <p class="stack">
+              Heroku · Node.js · GraphQL · Vue.js · React · Apollo
             </p>
-            <p class="t-small t-mono t-muted">
-              Tech: Docker, Kubernetes, Node.js, GraphQL, Vue.js, React,
-              Cypress, Jest
-            </p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a
+                  href="https://www.realforce.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >Realforce (Adfenix)</a
+                >
+              </h3>
+              <span class="title">Lead Frontend Developer</span>
+              <span class="years">2018 — 2019</span>
+            </div>
             <p>
-              <a href="https://www.adfenix.com/">Adfenix</a> enables estate
-              agents to find new customers using data-driven and highly targeted
-              social media advertising.
+              Led the development and maintenance of several client
+              applications for data-driven property advertising.
             </p>
+            <p class="stack">
+              Docker · Kubernetes · Node.js · GraphQL · Vue.js · React ·
+              Cypress
+            </p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a
+                  href="https://www.speedledger.se/"
+                  target="_blank"
+                  rel="noopener"
+                  >SpeedLedger</a
+                >
+              </h3>
+              <span class="title">Frontend Architect</span>
+              <span class="years">2016 — 2018</span>
+            </div>
             <p>
-              As Lead Frontend Developer at Adfenix I was responsible for the
-              life cycle of multiple client apps providing unique social media
-              advertising.
+              Focused on frontend architecture and the mobile web experience
+              for a bookkeeping product with bank integrations and automation.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">SpeedLedger</h4>
-            <p class="t-small t-muted t-mono mb-0">
-              Frontend Architect 2016 - 2018
+            <p class="stack">
+              Node.js · Babel · React · Redux · Webpack · Ava · Enzyme
             </p>
-            <p class="t-small t-mono t-muted">
-              Tech: Node.js, Babel, React, Redux, Webpack, Nightmare, Ava,
-              Enzyme
-            </p>
-            <p>
-              <a href="https://speedledger.se">SpeedLedger</a> is bookkeeping,
-              simplified. With bank integrations, report generation, and
-              automated bookkeeping, your bookkeeping becomes a breeze.
-            </p>
-            <p>
-              At SpeedLedger I worked to bring a great mobile experience to the
-              world of bookkeeping by enhancing the web development process.
-            </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">Saltside Technologies</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Lead Frontend Developer 2015 - 2016
-            </p>
-            <p class="t-muted t-small t-mono mb-0">
-              Frontend Developer 2014 - 2015
-            </p>
-            <p class="t-muted t-small t-mono">
-              Tech: Grunt, Node.js, Express.js, Backbone.js, Less, Webpack,
-              Jade, Selenium, Nightwatch, Vagrant, Cron
-            </p>
-            <p>
-              <a href="https://saltside.se">Saltside Technologies</a> provides
-              online marketplaces for emerging markets such as
-              <a href="https://tonaton.com/">Ghana</a>,
-              <a href="https://bikroy.com">Bangladesh</a>, and
-              <a href="https://www.ikman.lk">Sri Lanka</a>. All kinds of used
-              and new goods are sold on these sites - cars, electronics, or real
-              estate!
-            </p>
-            <p>
-              At Saltside, my responsibility as a (lead) frontend developer was
-              to supply a varying set of devices and connectivity levels with
-              the best experience possible for each user.
-            </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="experience">
-            <h4 class="mb-2">Carmenta AB</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Full Stack Developer 2010 - 2014
-            </p>
-            <p class="t-small t-mono t-muted">
-              Tech: C#, .NET 4.5, ASP.NET, MS SQL, jQuery, SASS
-            </p>
-            <p>
-              <a href="http://www.carmenta.com">Carmenta</a> provides several
-              solutions for creating, publishing, and consuming, maps online. I
-              spent 2 years at Carmenta as a consultant, mainly working on
-              customer-specific projects using
-              <a href="http://www.carmenta.com/en/products/carmenta-engine/"
-                >Carmenta Engine</a
-              >, followed by 2 years of R&amp;D-work as an in-house developer.
-            </p>
-            <p>
-              As in-house developer, my primary focus was the
-              <a href="http://www.carmenta.com/en/products/carmenta-server/">
-                Carmenta Server</a
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a href="https://saltside.se/" target="_blank" rel="noopener"
+                  >Saltside Technologies</a
+                >
+              </h3>
+              <span class="title"
+                >Lead Frontend Developer · Frontend Developer</span
               >
-              web API and the frontend applications consuming it, sometimes
-              lending frontend expertise to customer-specific projects.
-            </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h2 class="section-heading">Education</h2>
-          <section class="education">
-            <h4 class="mb-2">Chalmers University of Technology</h4>
-            <p class="t-muted t-small t-mono mb-0">
-              Software Engineering 2007 - 2010
-            </p>
-            <p class="t-muted t-small t-mono">
-              Information Technology 2004 - 2007
-            </p>
+              <span class="years">2014 — 2016</span>
+            </div>
             <p>
-              <span>Master's thesis: </span>
-              <a href="https://odr.chalmers.se/handle/20.500.12380/116615"
-                >Using WebKit as a cross-platform graphical user interface
-                renderer for the Spotify client</a
+              Built and led frontend work for the online marketplaces
+              <a href="https://tonaton.com/" target="_blank" rel="noopener"
+                >Tonaton</a
               >
+              in Ghana,
+              <a href="https://bikroy.com/" target="_blank" rel="noopener"
+                >Bikroy</a
+              >
+              in Bangladesh and
+              <a href="https://ikman.lk/" target="_blank" rel="noopener"
+                >ikman</a
+              >
+              in Sri Lanka, with a focus on varied devices and connection
+              speeds.
             </p>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <section class="contact">
-            <h2 class="section-heading">Contact</h2>
+            <p class="stack">
+              Node.js · Express · Backbone.js · Webpack · Less · Selenium
+            </p>
+          </article>
+
+          <article class="role">
+            <div class="role-head">
+              <h3 class="company">
+                <a href="https://carmenta.com/" target="_blank" rel="noopener"
+                  >Carmenta</a
+                >
+              </h3>
+              <span class="title">Full Stack Developer</span>
+              <span class="years">2010 — 2014</span>
+            </div>
             <p>
-              Want to get in touch? Feel free to send me a message on
+              Spent two years on customer projects built with
               <a
+                href="https://carmenta.com/products/carmenta-engine/"
                 target="_blank"
-                href="https://se.linkedin.com/pub/alexander-pekkari/2a/884/642"
-                >linkedin</a
+                rel="noopener"
+                >Carmenta Engine</a
+              >, followed by two years of product R&amp;D on the
+              <a
+                href="https://carmenta.com/products/carmenta-server/"
+                target="_blank"
+                rel="noopener"
+                >Carmenta Server</a
               >
-              or <a href="mailto:reachalepek@gmail.com">send an email</a>.
+              web API and its frontend applications.
             </p>
-            <br />
-          </section>
-        </div>
+            <p class="stack">C# · .NET · ASP.NET · MS SQL · jQuery · Sass</p>
+          </article>
+        </section>
+
+        <section class="body school" aria-labelledby="education-heading">
+          <h2 class="section-label" id="education-heading">Education</h2>
+          <h3>Chalmers University of Technology</h3>
+          <ul class="programmes">
+            <li>
+              <span>Software Engineering</span>
+              <span class="years">2007 — 2010</span>
+            </li>
+            <li>
+              <span>Information Technology</span>
+              <span class="years">2004 — 2007</span>
+            </li>
+          </ul>
+          <p>
+            Master's thesis:
+            <a
+              href="https://odr.chalmers.se/handle/20.500.12380/116615"
+              target="_blank"
+              rel="noopener"
+              >using WebKit as a cross-platform GUI renderer for the Spotify
+              client</a
+            >.
+          </p>
+        </section>
+
+        <section
+          class="body contact"
+          id="contact"
+          aria-labelledby="contact-heading"
+        >
+          <h2 class="section-label" id="contact-heading">Contact</h2>
+          <p>
+            You can reach me by email, or find my work on GitHub and my
+            experience on LinkedIn.
+          </p>
+          <div class="links">
+            <a href="mailto:reachalepek@gmail.com">reachalepek@gmail.com</a>
+            <a
+              href="https://github.com/alepek"
+              target="_blank"
+              rel="me noopener"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/alexander-pekkari-6428842a/"
+              target="_blank"
+              rel="me noopener"
+              >LinkedIn</a
+            >
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   </body>
 </html>
