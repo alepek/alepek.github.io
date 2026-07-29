@@ -1,10 +1,7 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const siteNav = document.querySelector(".site-nav");
-const introLinks = document.querySelector(".intro-links");
 const homeLink = document.querySelector(".home-link");
-const sectionLinks = document.querySelectorAll(
-  ".intro-links a[href^='#'], .site-nav a[href^='#']",
-);
+const sectionLinks = document.querySelectorAll(".site-nav a[href^='#']");
 const initialHash = ["#work", "#contact", "#top"].includes(
   window.location.hash,
 )
@@ -40,7 +37,7 @@ if (initialTarget) {
 
 if (window.anime) {
   const { animate, stagger, utils } = window.anime;
-  const introText = ".name, .lede, .note, .intro-links a";
+  const introText = ".name, .lede, .note, .nav-link";
   const secondaryContent =
     ".role, .section-label, .school h3, .school p, .contact > p, .contact .links";
   const entranceReady =
@@ -50,63 +47,38 @@ if (window.anime) {
   const entranceAnimations = [];
   let entranceActive = false;
   let navDocked = false;
-  let navAnimation;
-  let introLinkAnimation;
   let portraitAnimation;
   let scrollFrame;
 
   document.documentElement.dataset.animation = "animejs";
 
-  const shouldDockNav = () => {
-    const linkBottom = introLinks.getBoundingClientRect().bottom;
-    const enterAt = siteNav.offsetHeight - 8;
-    const exitAt = siteNav.offsetHeight + 18;
-
-    return navDocked ? linkBottom <= exitAt : linkBottom <= enterAt;
-  };
+  const isNavDocked = () => siteNav.getBoundingClientRect().top <= 0.5;
 
   const setNavDocked = (docked, animated = true) => {
     if (docked === navDocked && animated) return;
 
     navDocked = docked;
-    if (navAnimation) navAnimation.cancel();
-    if (introLinkAnimation) introLinkAnimation.cancel();
     if (portraitAnimation) portraitAnimation.cancel();
-
-    siteNav.setAttribute("aria-hidden", String(!docked));
-    siteNav.inert = !docked;
-    introLinks.setAttribute("aria-hidden", String(docked));
-    introLinks.inert = docked;
 
     if (docked) siteNav.classList.add("is-docked");
 
     if (!animated || reducedMotion.matches) {
-      utils.set(siteNav, { opacity: docked ? 1 : 0 });
-      utils.set(introLinks, { opacity: docked ? 0 : 1 });
-      utils.set(homeLink, { scale: docked ? 1 : 0.86 });
+      utils.set(homeLink, {
+        opacity: docked ? 1 : 0,
+        scale: docked ? 1 : 0.86,
+      });
       siteNav.classList.toggle("is-docked", docked);
       return;
     }
 
-    navAnimation = animate(siteNav, {
-      opacity: docked ? 1 : 0,
-      duration: docked ? 420 : 320,
-      ease: "inOutCubic",
-      onComplete: () => {
-        if (!navDocked) siteNav.classList.remove("is-docked");
-      },
-    });
-
-    introLinkAnimation = animate(introLinks, {
-      opacity: docked ? 0 : 1,
-      duration: docked ? 420 : 320,
-      ease: "inOutCubic",
-    });
-
     portraitAnimation = animate(homeLink, {
+      opacity: docked ? 1 : 0,
       scale: docked ? 1 : 0.9,
       duration: docked ? 520 : 300,
       ease: docked ? "outQuint" : "inOutCubic",
+      onComplete: () => {
+        if (!navDocked) siteNav.classList.remove("is-docked");
+      },
     });
   };
 
@@ -123,7 +95,7 @@ if (window.anime) {
   const syncScrollState = () => {
     scrollFrame = undefined;
     if (window.scrollY > 1) revealEntrance();
-    setNavDocked(shouldDockNav());
+    setNavDocked(isNavDocked());
   };
 
   const handleScroll = () => {
@@ -131,16 +103,16 @@ if (window.anime) {
     scrollFrame = window.requestAnimationFrame(syncScrollState);
   };
 
-  setNavDocked(shouldDockNav(), false);
+  setNavDocked(isNavDocked(), false);
   window.addEventListener("scroll", handleScroll, { passive: true });
-  window.addEventListener("resize", () => setNavDocked(shouldDockNav(), false));
+  window.addEventListener("resize", () => setNavDocked(isNavDocked(), false));
 
   if (entranceReady && !startedScrolled && !reducedMotion.matches) {
     utils.set(".name", { opacity: 0, translateY: 8 });
     utils.set(".portrait", { opacity: 0, scale: 0.99 });
     utils.set(".lede", { opacity: 0, translateY: 7 });
     utils.set(".note", { opacity: 0, translateY: 6 });
-    utils.set(".intro-links a", { opacity: 0, translateY: 4 });
+    utils.set(".nav-link", { opacity: 0, translateY: 4 });
     utils.set(secondaryContent, { opacity: 0, translateY: 7 });
     entranceActive = true;
 
@@ -190,7 +162,7 @@ if (window.anime) {
       );
 
       entranceAnimations.push(
-        animate(".intro-links a", {
+        animate(".nav-link", {
           opacity: 1,
           translateY: 0,
           delay: stagger(80, { start: 440 }),
@@ -251,16 +223,10 @@ if (window.anime) {
   }
 } else {
   const syncNav = () => {
-    const docked =
-      introLinks.getBoundingClientRect().bottom <= siteNav.offsetHeight;
+    const docked = siteNav.getBoundingClientRect().top <= 0.5;
 
     siteNav.classList.toggle("is-docked", docked);
-    siteNav.style.opacity = docked ? "1" : "0";
-    introLinks.style.opacity = docked ? "0" : "1";
-    siteNav.setAttribute("aria-hidden", String(!docked));
-    siteNav.inert = !docked;
-    introLinks.setAttribute("aria-hidden", String(docked));
-    introLinks.inert = docked;
+    homeLink.style.opacity = docked ? "1" : "0";
   };
 
   window.clearTimeout(window.motionFallback);
