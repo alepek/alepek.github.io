@@ -3,6 +3,7 @@
   --ink: #171612;
   --ink-70: #3c3830;
   --ink-50: #6d675a;
+  --rule: #b8b1a2;
 
   --sans: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --serif: Newsreader, Georgia, "Times New Roman", serif;
@@ -58,14 +59,14 @@ a:focus-visible {
 }
 
 .row + .row {
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--rule);
 }
 
 .spine {
   display: flex;
   justify-content: center;
   padding: 32px 0;
-  border-right: 1px solid var(--ink);
+  border-right: 1px solid var(--rule);
 }
 
 .spine span {
@@ -108,7 +109,7 @@ a:focus-visible {
   height: auto;
   aspect-ratio: 1;
   flex: none;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--rule);
   border-radius: 50%;
   object-fit: cover;
 }
