@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="map-pending">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +10,31 @@
       name="description"
       content="Alexander Pekkari is a hands-on software engineer in Gothenburg, working across product, technology and delivery."
     />
+    <style>
+      @media (min-width: 641px) {
+        .map-pending .spine {
+          opacity: 0 !important;
+        }
+      }
+    </style>
+    <noscript>
+      <style>
+        .map-pending .spine {
+          opacity: 1 !important;
+        }
+      </style>
+    </noscript>
+    <script>
+      const pageRoot = document.documentElement;
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        pageRoot.classList.add("motion-pending");
+      }
+
+      window.motionFallback = window.setTimeout(() => {
+        pageRoot.classList.remove("map-pending", "motion-pending");
+      }, 2500);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,6 +42,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"
+      defer
+    ></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -26,29 +55,35 @@
           <span>alexander pekkari</span>
         </div>
         <header class="body intro">
-          <div class="intro-head">
-            <h1 class="name">Hey! I'm Alex.</h1>
-            <img
-              class="portrait"
-              src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=320"
-              alt="Portrait of Alexander Pekkari"
-              width="160"
-              height="160"
-              fetchpriority="high"
-            />
+          <div class="intro-content">
+            <div class="intro-head">
+              <h1 class="name">Hey! I'm Alex.</h1>
+              <img
+                class="portrait"
+                src="https://avatars.githubusercontent.com/u/5012939?v=4&amp;size=320"
+                alt="Portrait of Alexander Pekkari"
+                width="160"
+                height="160"
+                fetchpriority="high"
+              />
+            </div>
+            <p class="lede">
+              I work comfortably across the full stack, from shaping product
+              direction to building and delivering the systems behind it.
+            </p>
+            <p class="note">
+              At Cerve, I’ve recently focused on delivering useful agentic
+              product workflows with Google ADK and the Vercel AI SDK.
+            </p>
+            <nav class="intro-links" aria-label="Page sections">
+              <a href="#work">Work</a>
+              <a href="#contact">Contact</a>
+            </nav>
           </div>
-          <p class="lede">
-            I work across product and technology, from shaping direction
-            through delivery.
-          </p>
-          <p class="note">
-            Currently a founding engineer at Cerve, building data and AI
-            systems for the food and beverage supply chain.
-          </p>
         </header>
       </div>
 
-      <div class="row">
+      <div class="row" id="work">
         <div class="spine" aria-hidden="true"><span>work</span></div>
         <section class="body roles" aria-label="Work experience">
           <article class="role">
@@ -62,7 +97,9 @@
               workflows and product systems for the food and beverage supply
               chain.
             </p>
-            <p class="stack">TypeScript · Node.js · GraphQL · AI/LLMs</p>
+            <p class="stack">
+              TypeScript · Node.js · GraphQL · Google ADK · Vercel AI SDK
+            </p>
           </article>
 
           <article class="role">
@@ -76,7 +113,8 @@
               system for media and social intelligence.
             </p>
             <p class="stack">
-              TypeScript · Node.js · Vue.js · Stencil.js · GraphQL · Apollo
+              TypeScript · Node.js · Vue.js · Stencil.js · GraphQL · Apollo ·
+              Vercel AI SDK
             </p>
           </article>
 
@@ -189,7 +227,7 @@
         </section>
       </div>
 
-      <div class="row">
+      <div class="row" id="contact">
         <div class="spine" aria-hidden="true"><span>contact</span></div>
         <footer class="body contact">
           <p>

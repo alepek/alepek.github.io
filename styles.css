@@ -12,7 +12,7 @@
   --pad-x: clamp(20px, 5vw, 76px);
   --spine: clamp(40px, 7vw, 108px);
   --content-max: 60rem;
-  --gap-role: clamp(34px, 4.5vw, 68px);
+  --gap-role: clamp(46px, 6vw, 88px);
 
   --t-name: clamp(38px, 5.6vw, 78px);
   --t-lede: clamp(19px, 2.5vw, 30px);
@@ -23,6 +23,17 @@
 
 * {
   box-sizing: border-box;
+}
+
+.motion-pending .name,
+.motion-pending .portrait,
+.motion-pending .lede,
+.motion-pending .note,
+.motion-pending .intro-links a,
+.motion-pending .role,
+.motion-pending .school > *,
+.motion-pending .contact > * {
+  opacity: 0;
 }
 
 html {
@@ -89,7 +100,11 @@ a:focus-visible {
 }
 
 .intro {
-  padding-block: clamp(56px, 10vw, 168px) clamp(48px, 7vw, 116px);
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(48px, 8vh, 96px);
 }
 
 .intro-head {
@@ -135,11 +150,20 @@ a:focus-visible {
   line-height: 2.1;
 }
 
+.intro-links {
+  display: flex;
+  gap: 32px;
+  margin-top: 34px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .roles {
   display: flex;
   flex-direction: column;
   gap: var(--gap-role);
-  padding-block: clamp(28px, 4vw, 60px) clamp(48px, 6vw, 96px);
+  padding-block: clamp(52px, 7vw, 104px) clamp(72px, 9vw, 132px);
 }
 
 .role-head {
@@ -176,7 +200,7 @@ a:focus-visible {
   max-width: 44em;
   margin: 16px 0 0;
   font-size: var(--t-body);
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
 .role p.stack {
@@ -256,24 +280,36 @@ a:focus-visible {
   }
 
   .intro {
-    padding-block: 72px 76px;
+    padding-block: 40px;
   }
 
   .portrait {
     width: clamp(76px, 24vw, 96px);
   }
 
+  .name {
+    font-size: 42px;
+  }
+
   .lede {
     margin-top: 48px;
+    font-size: 21px;
+    line-height: 1.5;
   }
 
   .note {
     margin-top: 38px;
+    font-size: 13px;
+    line-height: 1.95;
+  }
+
+  .intro-links {
+    font-size: 14px;
   }
 
   .roles {
-    gap: 58px;
-    padding-block: 38px 76px;
+    gap: 68px;
+    padding-block: 50px 92px;
   }
 
   .role-head {
@@ -301,12 +337,6 @@ a:focus-visible {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a {
-    transition: color 150ms ease;
-  }
-}
-
 @media print {
   :root {
     --paper: #fff;
@@ -326,7 +356,13 @@ a:focus-visible {
   }
 
   .intro {
+    display: block;
+    min-height: 0;
     padding-block: 12mm;
+  }
+
+  .intro-links {
+    display: none;
   }
 
   .spine {
