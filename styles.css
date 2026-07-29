@@ -329,6 +329,7 @@ a:focus-visible {
   :root {
     --gap-role: 68px;
     --nav-height: 64px;
+    --pad-x: 28px;
     --section-heading-gap: 38px;
   }
 
